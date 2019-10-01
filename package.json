@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "core-js": "^3.2.1",
+    "express": "^4.17.1",
     "ripple-lib": "*"
   },
   "devDependencies": {

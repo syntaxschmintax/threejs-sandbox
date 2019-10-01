@@ -1,0 +1,13 @@
+{
+  "name": "xrpl-graphics",
+  "version": "0.0.1",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "core-js": "^3.2.1",
+    "ripple-lib": "*"
+  },
+  "devDependencies": {
+    "eslint": "*"
+  }
+}

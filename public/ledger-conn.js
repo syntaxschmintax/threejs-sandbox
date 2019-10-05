@@ -1,6 +1,6 @@
 var socket_url = 'wss://xrpgoat.com:6005/';
 var api = new ripple.RippleAPI({server: socket_url});
-api.on('connected', () => { console.log('connected!!!!!') });
+api.on('connected', () => { console.log(`connected to ${socket_url}`); });
 
 api.on('disconnected', (code) => {
   if (code !== 1000) {
@@ -19,32 +19,20 @@ api.on('ledger', ledger => {
     includeTransactions: true,
     includeAllData: true,
     ledgerVersion: ledger.ledgerVersion
-  }
+  };
   api.getLedger(ledger_opts)
-    .then(ledger_content => {console.log(ledger_content)});
+    .then(ledger_content => { 
+      console.log(ledger_content); 
+      addCubeAtRandom3DPosition(0.75, {ledger_content: ledger_content});
+    });
 });
 
 api.connect().then(function() {
   return api.getServerInfo();
 }).then(function(server_info) {
-  document.body.innerHTML += `<p> -- Connected to ${socket_url} -- </p>` +
-    `<table>` +
-    `  <tr><th>Version</th>` +
-    `    <td>${server_info.buildVersion}</td></tr>` +
-    `  <tr><th>Ledgers available</th>` +
-    `    <td>${server_info.completeLedgers}</td></tr>` +
-    `  <tr><th>hostID</th>` +
-    `    <td>${server_info.hostID}</td></tr>` +
-    `  <tr><th>Most Recent Validated Ledger Seq.</th>` +
-    `    <td>${server_info.validatedLedger.ledgerVersion}</td></tr>` +
-    `  <tr><th>Most Recent Validated Ledger Hash</th>` +
-    `    <td>${server_info.validatedLedger.hash}</td></tr>` +
-    `  <tr><th>Seconds since last ledger validated</th>` +
-    `    <td>${server_info.validatedLedger.age}</td></tr>` +
-    `</table>`;
+  console.log(server_info);
 }).then(async info => {
-  // Mock a 30s connection. TODO: The actual conn/break things
-  console.log('getServerInfo done. listening for 30s');
-  await new Promise(done => setTimeout(done, 30000));
+  console.log('Socket open for 5 minutes');
+  await new Promise(done => setTimeout(done, 300000));
 }).then(() => {return api.disconnect();
 }).catch(console.error);

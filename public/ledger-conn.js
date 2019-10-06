@@ -15,16 +15,8 @@ api.on('error', (errorCode, errorMessage, data) => {
 });
 
 api.on('ledger', ledger => {
-  let ledger_opts = {
-    includeTransactions: true,
-    includeAllData: true,
-    ledgerVersion: ledger.ledgerVersion
-  };
-  api.getLedger(ledger_opts)
-    .then(ledger_content => { 
-      console.log(ledger_content); 
-      addCubeAtRandom3DPosition(0.75, {ledger_content: ledger_content});
-    });
+  console.log(`Received Ledger#: ${ledger.ledgerVersion}`); 
+  addCubeAtRandom3DPosition(1, {ledger_content: ledger, color: 0x29b6f8});
 });
 
 api.connect().then(function() {

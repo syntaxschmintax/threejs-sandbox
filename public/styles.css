@@ -1,0 +1,56 @@
+body { 
+    margin: 0; 
+    height: 100vh; 
+    position: relative;
+    overflow: hidden;
+}
+canvas { 
+    display: block; 
+    z-index: -1; 
+    position: relative; 
+}
+
+#mainOverlay {
+    min-width: 30%;
+    max-width: 90%;
+    min-height: 20vh;
+    max-height: 60vh;
+
+    background: rgba(15, 37, 15, 0.689);
+    z-index: 10;
+    position: absolute;
+
+    top: 5vh;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+    color: springgreen;
+
+    /* Starts hidden */
+    display: none;
+    box-shadow: 1px 1px 5px 1px;
+    border-radius: 2% 14%;
+
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+#mainOverlay::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+#closeOverlayButton {
+    margin: 1em 0em 0em 1em;
+    border: none;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 8px 2px #4dc1f7, 0px 0px 14px -1px #4dc1f7 inset;
+    background: none;
+    color: #4dc1f7;
+}
+
+pre {
+    margin: 0;
+    padding: 0;
+}
